@@ -1,3 +1,3 @@
 sources:
   wordgrinder-0.9.dev.tar.gz:  a755829ffa339fd6dd56c4dc22f71006ccc86246
-  wordgrinder-fix-install-destdir.patch:  9d6c9c7b64b451d39c090ef8c9a19ade95651a4b
+  wordgrinder-install.patch:  0f5c9d228c211df969f7bce63fd3856b49c8367f
