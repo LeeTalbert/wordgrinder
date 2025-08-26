@@ -1,0 +1,49 @@
+--- Makefile.orig	2025-08-25 19:20:05.251615859 -0500
++++ Makefile	2025-08-25 19:22:17.476523399 -0500
+@@ -44,23 +44,36 @@
+ CXXFLAGS = $(CFLAGS) --std=c++17
+ LDFLAGS += -ffunction-sections -fdata-sections
+ 
+-export PREFIX = /usr/local
++ export REALOBJ = .obj
++ export OBJ = $(REALOBJ)/$(BUILDTYPE)
+ 
+-export REALOBJ = .obj
+-export OBJ = $(REALOBJ)/$(BUILDTYPE)
+-
+-.PHONY: all
+-all: +all
++DESTDIR ?=
++BINDIR ?= $(PREFIX)/bin
++MANDIR ?= $(PREFIX)/share/man
++ .PHONY: all
++ all: +all
+ 
+ clean::
+ 	$(hide) rm -rf $(REALOBJ)
+ 
+ .PHONY: install
+ install: +all
+-	test -f bin/wordgrinder && cp bin/wordgrinder $(PREFIX)/bin/wordgrinder
+-	test -f bin/wordgrinder.1 && cp bin/wordgrinder.1 $(PREFIX)/man/man1/wordgrinder.1
+-	test -f bin/xwordgrinder && cp bin/xwordgrinder $(PREFIX)/bin/xwordgrinder
+-	test -f bin/xwordgrinder.1 && cp bin/wordgrinder.1 $(PREFIX)/man/man1/xwordgrinder.1
++	@if [ -f bin/wordgrinder ]; then \
++		mkdir -p $(DESTDIR)$(BINDIR); \
++		cp bin/wordgrinder $(DESTDIR)$(BINDIR)/wordgrinder; \
++	fi
++	@if [ -f bin/wordgrinder.1 ]; then \
++		mkdir -p $(DESTDIR)$(MANDIR)/man1; \
++		cp bin/wordgrinder.1 $(DESTDIR)$(MANDIR)/man1/wordgrinder.1; \
++	fi
++	@if [ -f bin/xwordgrinder ]; then \
++		mkdir -p $(DESTDIR)$(BINDIR); \
++		cp bin/xwordgrinder $(DESTDIR)$(BINDIR)/xwordgrinder; \
++	fi
++	@if [ -f bin/wordgrinder.1 ]; then \
++		mkdir -p $(DESTDIR)$(MANDIR)/man1; \
++		cp bin/wordgrinder.1 $(DESTDIR)$(MANDIR)/man1/xwordgrinder.1; \
++	fi
+ 
+ .PHONY: debian-distr
+ debian-distr: bin/wordgrinder-minimal-dependencies-for-debian.tar.xz
