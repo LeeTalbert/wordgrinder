@@ -16,7 +16,7 @@ BuildRequires:	lib64ncursesw
 BuildRequires:	lib64z-devel
 BuildRequires:	lib64glfw-devel
 BuildRequires:	pkgconfig(ncursesw)
-BuildRequires:	python-pypillowfight
+BuildRequires:	python%{pyver}dist(pypillowfight)
 
 Requires:	lib64ncursesw
 Requires:	lib64z1
