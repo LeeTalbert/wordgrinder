@@ -12,9 +12,9 @@ License:	MIT
 Group:		Terminal/Editors
 
 BuildRequires:	ninja
-BuildRequires:	lib64ncursesw
 BuildRequires:	lib64z-devel
 BuildRequires:	lib64glfw-devel
+BuildRequires:  pkgconfig(opengl)
 BuildRequires:	pkgconfig(ncursesw)
 BuildRequires:	python%{pyver}dist(pypillowfight)
 
